@@ -1,24 +1,21 @@
 const screen = document.getElementById('screen');
-let display = "";
 
 document.querySelectorAll('.printable').forEach((button) => {
     button.addEventListener('click', () => {
-        display += button.innerHTML;
-        screen.innerHTML = display;
+        screen.innerHTML += button.innerHTML;
     })
 })
 
+document.getElementById('backspace').addEventListener('click', () => {
+    screen.innerHTML = screen.innerHTML.slice(0, -1);
+});
+
 document.getElementById('equals').addEventListener('click', () => {
-    if (display.includes('&lt;')) {
-        display = display.replace("&lt;", "\<");
-    }
-    display = eval(display);
-    screen.innerHTML = display;
+    screen.innerHTML = eval(screen.innerHTML);
 });
 
 document.getElementById('clear').addEventListener('click', () => {
-    display = "";
-    screen.innerHTML = display;
+    screen.innerHTML = "";
 });
 
 const buttons = document.querySelectorAll('td');
